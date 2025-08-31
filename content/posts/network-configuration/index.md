@@ -24,4 +24,9 @@ But, without DHCP server I can't have an IP in my server. I lost 2 hours to find
 
 With this solution, I can connect to my server. 
 
-### 
+### Virtual brige for the cluster
+To prevent a change of the VM during changement of environnement, the solution is to build a virtual brige specific to the cluster. It's prety easy to create.  
+I create a vmb1 brige, and I add this brige to all my cluster node and my manager node. I just add new network interface. And, it dosen't works. Want a virtual network is create, it's empty. When you connect all your machine in there, it's like having 4 machines in the same network, but nobody can interact because none have IP aadress. After understand this (it took me 2 houres), I needed install DHCP server on my Proxmox server, and administrate the vmb1 brige to allocate IP adresse automaticaly.
+
+#### Install DHCP server
+This part was prety easy, you just need to choose a DHCP server, and install it. I choose `dnsmasq`for this lighweht.
