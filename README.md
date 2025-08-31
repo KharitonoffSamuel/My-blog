@@ -8,3 +8,8 @@ I found a solution to host blog in minutes with hugo and GitHub, so was I.
 
 ## Topics
 I am a tech guy, work in **developpement** first, with **management**, **process optimisation** and **project management**.
+
+## Create new post
+```bash
+hugo new /posts/<NAME_OF_YOUR_POST>.md
+```

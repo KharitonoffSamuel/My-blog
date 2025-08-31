@@ -1,11 +1,11 @@
 +++
-date = '2025-08-31T13:21:30+02:00'
+date = 2025-08-31
 draft = false
-title = 'My First Post'
+title = 'Wellcome to my blog'
+topics = ["Myself", "Overview"]
+categories = ["Generic"]
+tag = ["hugo", "blog"]
 +++
 
 ## Introduction
-
-This is **bold** text, and this is *emphasized* text.
-
-Visit the [Hugo](https://gohugo.io) website!
+I’ve built many projects on my own, but I never shared them publicly. For a long time, I wanted to have my own server with a personal domain name. Unfortunately, for personal reasons, I couldn’t maintain a persistent server. Recently, I discovered a solution that lets me host a blog within minutes using Hugo and GitHub — so here I am.

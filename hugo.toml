@@ -1,7 +1,7 @@
 theme = "PaperMod"
 baseURL = "https://KharitonoffSamuel/"
 languageCode = 'en-us'
-title = 'Eliorion blog'
+title = 'Samuel Kharitonoff blog'
 
 [params]
   showReadingTime = true
@@ -14,5 +14,16 @@ title = 'Eliorion blog'
   url = "/posts/"
   weight = 10
 
+[[menu.main]]
+  identifier = "topics"
+  name = "Topics"
+  url = "/topics/"
+  weight = 20
+
 [permalinks]
 posts = "/posts/:slug/"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  topic = "topics"   # ← on peut ajouter "topics" si on veut un regroupement spécifique
