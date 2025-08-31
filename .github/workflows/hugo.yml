@@ -1,9 +1,11 @@
 name: Build and deploy
+
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["Translate Posts"]   # nom du workflow translation.yml
+    types:
+      - completed
+
 permissions:
   contents: read
   pages: write
@@ -14,6 +16,7 @@ concurrency:
 defaults:
   run:
     shell: bash
+
 jobs:
   build:
     runs-on: ubuntu-latest

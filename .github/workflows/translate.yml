@@ -1,0 +1,38 @@
+name: Translate Posts
+
+on:
+  push:
+    paths:
+      - 'content/posts/**.md'
+      - 'hugo.toml'
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install transformers sentencepiece torch
+
+      - name: Run translation
+        run: |
+          for file in content/posts/*.md; do
+            if [[ $file != *".fr.md" ]]; then
+              python translate_hf.py $file
+            fi
+          done
+
+      - name: Commit translated files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add content/posts/*.fr.md
+          git commit -m "Auto-translate new posts (EN→FR)"
+          git push

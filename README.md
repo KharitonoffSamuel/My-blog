@@ -10,11 +10,18 @@ I found a solution to host blog in minutes with hugo and GitHub, so was I.
 I am a tech guy, work in **developpement** first, with **management**, **process optimisation** and **project management**.
 
 ## Create new post
+With the default archetypes file :
 ```bash
 hugo new posts/<NAME_OF_YOUR_POST>/index.md
 ```
+With specifique template file :
+```bash
+hugo --kind <NAME_OF_YOUR_TEMPLATE> posts/<NAME_OF_YOUR_POST>/index.md
+```
 
 ## Generate localy
+If you want to test, or writ and see the result in live, you can use this command :
 ```bash
 hugo server -D
 ```
+The server is set at the port `1313`.
