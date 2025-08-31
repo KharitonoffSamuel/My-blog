@@ -57,6 +57,10 @@ posts = "/posts/:slug/"
   topic = "topics"   # ← on peut ajouter "topics" si on veut un regroupement spécifique
   project = "projects"
 
-[params.homeInfoParams]
+[languages.en.params.homeInfoParams]
   Title = "👋 Welcome the Eliorion Blog"
   Content = "Here I share my journey in homelab, Kubernetes, and engineering management. 🚀"
+
+[languages.fr.params.homeInfoParams]
+  Title = "👋 Bienvenue sur le blog d'Eliorion"
+  Content = "Je partage ici mon parcours dans le domaine des Homelab (laboratoires domestiques), de Kubernetes et du managelent de projet. 🚀"

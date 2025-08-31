@@ -1,15 +1,15 @@
 ---
 date: 2025-08-31T14:00:00+02:00
 draft: false
-title: 'Introduction to my blog'
+title: 'Introduction du blog'
 topics: ["Myself", "Overview"]
 categories: ["Generic"]
-tags: ["hugo", "blog"]
+tags: ["Myself", "blog", "generic"]
 weight: -10
 ---
 
 ## Introduction
-I’ve built many projects on my own, but I never shared them publicly. For a long time, I wanted to have my own server with a personal domain name. Unfortunately, for personal reasons, I couldn’t maintain a persistent server. Recently, I discovered a solution that lets me host a blog within minutes using Hugo and GitHub — so here I am.
+J'ai réalisé de nombreux projets par moi-même, mais je ne les ai jamais partagés publiquement. Pendant longtemps, j'ai souhaité disposer de mon propre serveur avec un nom de domaine personnel. Malheureusement, pour des raisons personnelles, je n'ai pas pu maintenir un serveur permanent. Récemment, j'ai découvert une solution qui me permet d'héberger un blog en quelques minutes à l'aide de Hugo et GitHub. Me voici donc avec ce blog.
 
-## My LinkdIn
-You can see my [LinkdIn]() if you want.
+## Mon LinkdIn
+Vous pouvez me contacter sur [LinkdIn](https://www.linkedin.com/in/samuel-kharitonoff/) if you want.
