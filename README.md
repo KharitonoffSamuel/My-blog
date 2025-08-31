@@ -11,5 +11,5 @@ I am a tech guy, work in **developpement** first, with **management**, **process
 
 ## Create new post
 ```bash
-hugo new /posts/<NAME_OF_YOUR_POST>.md
+hugo new posts/<NAME_OF_YOUR_POST>.md
 ```
