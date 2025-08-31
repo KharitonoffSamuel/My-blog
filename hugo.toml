@@ -58,7 +58,7 @@ posts = "/posts/:slug/"
   project = "projects"
 
 [languages.en.params.homeInfoParams]
-  Title = "👋 Welcome the Eliorion Blog"
+  Title = "👋 Welcome to Eliorion's blog"
   Content = "Here I share my journey in homelab, Kubernetes, and engineering management. 🚀"
 
 [languages.fr.params.homeInfoParams]
