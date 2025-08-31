@@ -1,12 +1,22 @@
 theme = "PaperMod"
-baseURL = "https://KharitonoffSamuel/"
-languageCode = 'en-us'
-title = 'Samuel Kharitonoff blog'
+baseURL = "https://Eliorion/"
+title = 'Eliorion blog'
 
 [params]
   showReadingTime = true
   showBreadCrumbs = true
   showPostNavLinks = true
+  ShowLanguageSelector = true
+
+defaultContentLanguage = "en"
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+
+  [languages.fr]
+    languageName = "Français"
+    weight = 2
 
 [[menu.main]]
   identifier = "posts"
@@ -48,5 +58,5 @@ posts = "/posts/:slug/"
   project = "projects"
 
 [params.homeInfoParams]
-  Title = "👋 Welcome to my Blog"
+  Title = "👋 Welcome the Eliorion Blog"
   Content = "Here I share my journey in homelab, Kubernetes, and engineering management. 🚀"
