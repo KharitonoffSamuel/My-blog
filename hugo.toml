@@ -1,0 +1,18 @@
+theme = "PaperMod"
+baseURL = "https://KharitonoffSamuel.github.io/"
+languageCode = 'en-us'
+title = 'Eliorion blog'
+
+[params]
+  showReadingTime = true
+  showBreadCrumbs = true
+  showPostNavLinks = true
+
+[[menu.main]]
+  identifier = "posts"
+  name = "Posts"
+  url = "/posts/"
+  weight = 10
+
+[permalinks]
+posts = "/posts/:slug/"
