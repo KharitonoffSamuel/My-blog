@@ -12,12 +12,18 @@ title = 'Samuel Kharitonoff blog'
   identifier = "posts"
   name = "Posts"
   url = "/posts/"
-  weight = 10
+  weight = 20
 
 [[menu.main]]
   identifier = "topics"
   name = "Topics"
   url = "/topics/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "categories"
+  name = "Categories"
+  url = "/categories/"
   weight = 20
 
 [permalinks]
