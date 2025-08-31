@@ -12,6 +12,9 @@ COMMIT_MESSAGE="$1"
 # Ajoute tous les fichiers modifiés
 git add .
 
+#
+git pull
+
 # Crée le commit avec le message
 git commit -m "$COMMIT_MESSAGE"
 
