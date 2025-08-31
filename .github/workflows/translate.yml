@@ -15,9 +15,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
-      - name: Change branch to main
-        run: git checkout main
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v4
