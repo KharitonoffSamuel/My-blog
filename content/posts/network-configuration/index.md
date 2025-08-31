@@ -1,0 +1,27 @@
+---
+title: 'Network Configuration'
+date: 2025-08-31T22:19:31+02:00
+draft: true
+topics: ["Homelab"]
+tags: ["talos.linux", "K8S", "K9S", "K3S", "talosctl", "proxmox", "hardware", "homelab", "network"]
+categories: ["IT", "Home lab"]
+weight: 0 # Lower number = toper in the list
+cover:
+  image: "cover.png"
+  alt: 'Network Configuration'
+  caption: ""
+  relative: true  
+---
+
+## First issue
+### Multiples environnements 
+First, I need to connect to my server in SSH and in http to manage Proxmox. 
+![Homelab Diagram](diagram.png)
+With this diagram you can see a simple usage of VM machine. But, I have personal conditions.  
+I need to have a virtual network to have a stable IP of my node in my cluster. But, as you can see, in default with proxmox, you have one bridge created connect to the physical Ethernet port in the server. And, I change environnement to work in my office, and my home because I don't have an internet box in there, so for connect my server to my PC, I need to connect the Ethernet ports of the server and my PC in direct.  
+
+But, without DHCP server I can't have an IP in my server. I lost 2 hours to find a solution. I force the PC to share wifi connection to the Ethernet port. With this solution, the network DHCP works well with the network `192.168.137.xx`. By default the PC is `.1` and the server is `.2`.
+
+With this solution, I can connect to my server. 
+
+### 

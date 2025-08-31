@@ -1,14 +1,17 @@
 ---
 title: '{{ replace .File.ContentBaseName "-" " " | title }}'
 date: {{ .Date }}
-draft: true
+draft: false
 topics: ["Homelab"]
 tags: ["talos.linux", "K8S", "K9S", "K3S", "talosctl", "proxmox", "hardware", "homelab", "network"]
-categories: ["IT", "Home lab"]
-weight: 0 # Lower number = toper in the list
+projects: ["HomeLab gitDevSecOps"]
+categories: ["IT", "Homelab"]
 cover:
-  image: "cover.png"
+  image: "cover.svg"
   alt: '{{ replace .Name "-" " " | title }}'
   caption: ""
   relative: true  
+  hidden: true            # si true → pas de cover sur la page du post
+  hiddenInList: true      # si true → pas de cover dans la liste des posts
+  hiddenInSingle: false    # si true → pas de cover sur la page individuelle
 ---
