@@ -34,7 +34,7 @@ jobs:
           fetch-depth: 0
 
       - name: Change branch to main
-        uses: git switch main
+        run: git switch main
         
       - name: Setup Go
         uses: actions/setup-go@v5
