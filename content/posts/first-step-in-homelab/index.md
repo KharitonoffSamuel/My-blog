@@ -3,7 +3,8 @@ title: "First Step in Homelab world"
 date: 2025-08-31T14:51:29+02:00
 draft: false
 topics: ["Homelab"]
-tag: ["talos.linux", "K8S", "K9S", "K3S", "talosctl", "proxmox", "hardware", "homelab", "network"]
+tags: ["talos.linux", "K8S", "K9S", "K3S", "talosctl", "proxmox", "hardware", "homelab", "network"]
+projects: ["HomeLab gitDevSecOps"]
 categories: ["IT", "Homelab"]
 cover:
   image: "cover.svg"

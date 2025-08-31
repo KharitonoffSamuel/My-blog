@@ -1,10 +1,11 @@
 +++
 date = 2025-08-31T14:00:00+02:00
 draft = false
-title = 'Wellcome to my blog'
+title = 'Intro my blog'
 topics = ["Myself", "Overview"]
 categories = ["Generic"]
-tag = ["hugo", "blog"]
+tags = ["hugo", "blog"]
+weight = -10
 +++
 
 ## Introduction

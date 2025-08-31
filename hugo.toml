@@ -12,19 +12,31 @@ title = 'Samuel Kharitonoff blog'
   identifier = "posts"
   name = "Posts"
   url = "/posts/"
-  weight = 20
+  weight = 19
 
 [[menu.main]]
   identifier = "topics"
   name = "Topics"
   url = "/topics/"
-  weight = 20
+  weight = 16
 
 [[menu.main]]
   identifier = "categories"
   name = "Categories"
   url = "/categories/"
-  weight = 20
+  weight = 15
+
+[[menu.main]]
+  identifier = "tags"
+  name = "Tags"
+  url = "/tags/"
+  weight = 17
+
+[[menu.main]]
+  identifier = "projects"
+  name = "Projects"
+  url = "/projects/"
+  weight = 18
 
 [permalinks]
 posts = "/posts/:slug/"
@@ -33,3 +45,8 @@ posts = "/posts/:slug/"
   category = "categories"
   tag = "tags"
   topic = "topics"   # ← on peut ajouter "topics" si on veut un regroupement spécifique
+  project = "projects"
+
+[params.homeInfoParams]
+  Title = "👋 Welcome to my Blog"
+  Content = "Here I share my journey in homelab, Kubernetes, and engineering management. 🚀"
