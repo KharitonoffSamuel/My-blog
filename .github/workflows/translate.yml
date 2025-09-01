@@ -15,9 +15,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
-      - name: Change branch to main
-        uses: git switch main
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -30,7 +29,7 @@ jobs:
       - name: Run translation
         run: |
           for file in content/posts/*.md; do
-            if [[ $file != *".fr.md" ]]; then
+            if [[ $file != *".md" ]]; then
               python translate_hf.py $file
             fi
           done
@@ -39,6 +38,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add content/posts/*.fr.md
+          git add content/posts/*.md
           git commit -m "Auto-translate new posts (EN→FR)"
           git push
