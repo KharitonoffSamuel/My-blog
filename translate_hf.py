@@ -24,11 +24,27 @@ def unmask_markdown(text, masks):
         text = text.replace(key, val)
     return text
 
+def chunk_text(text, max_chunk_size=400):
+    # Découpe en morceaux par phrases ou paragraphes
+    import re
+    sentences = re.split(r'(?<=[.!?]) +', text)
+    chunks, current = [], ""
+
+    for sentence in sentences:
+        if len(current) + len(sentence) < max_chunk_size:
+            current += sentence + " "
+        else:
+            chunks.append(current.strip())
+            current = sentence + " "
+    if current:
+        chunks.append(current.strip())
+    return chunks
+
 def translate_file(file):
     with open(file, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
-    # --- séparateur du front matter
+    # --- Front matter
     front_matter = []
     content_lines = []
     in_front_matter = False
@@ -49,29 +65,33 @@ def translate_file(file):
 
     # Traduire seulement le titre
     new_front_matter = []
-    import re
     title_pattern = re.compile(r"^title:\s*['\"]?(.*?)['\"]?$")
     for line in front_matter:
         match = title_pattern.match(line.strip())
         if match:
             original_title = match.group(1)
             translated_title = translator(original_title, max_length=200)[0]["translation_text"]
-            new_line = f"title: '{translated_title}'\n"
-            new_front_matter.append(new_line)
+            new_front_matter.append(f"title: '{translated_title}'\n")
         else:
             new_front_matter.append(line)
 
-    # Traduire le contenu
+    # Traduire le contenu par morceaux
     content_text = "".join(content_lines)
     masked, masks = mask_markdown(content_text)
-    translated_masked = translator(masked, max_length=400)[0]["translation_text"]
+    chunks = chunk_text(masked, max_chunk_size=400)
+
+    translated_parts = []
+    for c in chunks:
+        translated = translator(c, max_length=400)[0]["translation_text"]
+        translated_parts.append(translated)
+
+    translated_masked = " ".join(translated_parts)
     final_content = unmask_markdown(translated_masked, masks)
 
+    # Sauvegarde
     output_file = file.replace(".md", ".fr.md")
     with open(output_file, "w", encoding="utf-8") as f:
         f.writelines(new_front_matter)
         f.write(final_content)
 
     print(f"[INFO] Translated file created: {output_file}")
-
-translate_file(file)
