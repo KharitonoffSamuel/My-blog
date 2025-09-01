@@ -34,3 +34,6 @@ I create a vmb1 brige, and I add this brige to all my cluster node and my manage
 
 #### Install DHCP server
 This part was prety easy, you just need to choose a DHCP server, and install it. I choose `dnsmasq`for this lighweht.
+
+#### Configure DHCP
+I need to configure  the 
