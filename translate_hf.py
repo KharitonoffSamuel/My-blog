@@ -6,6 +6,7 @@ import re
 translator = pipeline("translation", model="Helsinki-NLP/opus-mt-en-fr")
 
 file = sys.argv[1]
+print(f"[INFO] File input : {file}")
 
 def mask_markdown(text):
     masks = {}
