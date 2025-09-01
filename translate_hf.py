@@ -1,33 +1,20 @@
-from transformers import pipeline
 import sys
-import re
 import os
+from transformers import pipeline
+import re
 
-# Initialise le pipeline de traduction
 translator = pipeline("translation", model="Helsinki-NLP/opus-mt-en-fr")
 
-# Récupérer le chemin racine depuis l'argument
-root_path = sys.argv[1]
-print(f"[INFO] Path : {root_path}")
+file = sys.argv[1]
 
-# Fonction pour parcourir récursivement tous les fichiers .md
-def get_md_files(path):
-    md_files = []
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            if file.endswith(".md"):
-                md_files.append(os.path.join(root, file))
-    return md_files
-
-# Fonction pour protéger liens, images et titres Markdown
 def mask_markdown(text):
     masks = {}
-    # On protège les liens, images, titres Markdown et code inline
     pattern = r'(\[.*?\]\(.*?\)|\!\[.*?\]\(.*?\)|`[^`]+`|^#+ )'
     def replacer(match):
         key = f"__MASK{len(masks)}__"
         masks[key] = match.group(0)
         return key
+    import re
     masked_text = re.sub(pattern, replacer, text, flags=re.MULTILINE)
     return masked_text, masks
 
@@ -36,31 +23,32 @@ def unmask_markdown(text, masks):
         text = text.replace(key, val)
     return text
 
-# Fonction principale pour traduire un fichier
 def translate_file(file):
     with open(file, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
+    # --- séparateur du front matter
     front_matter = []
     content_lines = []
     in_front_matter = False
-    front_matter_done = False
+    done = False
 
     for line in lines:
         if line.strip() == "---":
             if not in_front_matter:
                 in_front_matter = True
             elif in_front_matter:
-                front_matter_done = True
+                done = True
                 in_front_matter = False
             front_matter.append(line)
-        elif in_front_matter and not front_matter_done:
+        elif in_front_matter and not done:
             front_matter.append(line)
         else:
             content_lines.append(line)
 
-    # Traduire uniquement le titre du front matter
+    # Traduire seulement le titre
     new_front_matter = []
+    import re
     title_pattern = re.compile(r"^title:\s*['\"]?(.*?)['\"]?$")
     for line in front_matter:
         match = title_pattern.match(line.strip())
@@ -72,24 +60,17 @@ def translate_file(file):
         else:
             new_front_matter.append(line)
 
-    # Traduire le contenu Markdown en protégeant liens, images et titres
+    # Traduire le contenu
     content_text = "".join(content_lines)
-    masked_content, masks = mask_markdown(content_text)
-    translated_masked_content = translator(masked_content, max_length=400)[0]["translation_text"]
-    final_content = unmask_markdown(translated_masked_content, masks)
+    masked, masks = mask_markdown(content_text)
+    translated_masked = translator(masked, max_length=400)[0]["translation_text"]
+    final_content = unmask_markdown(translated_masked, masks)
 
-    # Écrire le fichier traduit
     output_file = file.replace(".md", ".fr.md")
     with open(output_file, "w", encoding="utf-8") as f:
         f.writelines(new_front_matter)
         f.write(final_content)
 
-    print(f"Translated file created: {output_file}")
+    print(f"[INFO] Translated file created: {output_file}")
 
-# Parcourir tous les fichiers Markdown sous le chemin racine
-md_files = get_md_files(root_path)
-print(f"[INFO] md files : {md_files}")
-for md_file in md_files:
-    # Ignorer les fichiers déjà traduits
-    if not md_file.endswith(".fr.md"):
-        translate_file(md_file)
+translate_file(file)
