@@ -28,11 +28,10 @@ jobs:
 
       - name: Run translation
         run: |
-          for file in content/posts/*.md; do
-            if [[ $file != *".md" ]]; then
-              python translate_hf.py $file
-            fi
-          done
+          for file in $(find content/posts -type f -name "*.md" ! -name "*.fr.md"); do
+            echo "Translating $file"
+            python translate_hf.py "$file"
+           done
 
       - name: Commit translated files
         run: |
