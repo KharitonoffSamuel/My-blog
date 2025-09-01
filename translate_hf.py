@@ -8,6 +8,7 @@ translator = pipeline("translation", model="Helsinki-NLP/opus-mt-en-fr")
 
 # Récupérer le chemin racine depuis l'argument
 root_path = sys.argv[1]
+print(f"[INFO] Path : {root_path}")
 
 # Fonction pour parcourir récursivement tous les fichiers .md
 def get_md_files(path):
@@ -87,6 +88,7 @@ def translate_file(file):
 
 # Parcourir tous les fichiers Markdown sous le chemin racine
 md_files = get_md_files(root_path)
+print(f"[INFO] md files : {md_files}")
 for md_file in md_files:
     # Ignorer les fichiers déjà traduits
     if not md_file.endswith(".fr.md"):
