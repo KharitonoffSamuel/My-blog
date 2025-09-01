@@ -40,4 +40,4 @@ jobs:
           git config user.email "actions@github.com"
           git add content/posts/*.fr.md
           git commit -m "Auto-translate new posts (EN→FR)"
-          git push
+          git push -f
