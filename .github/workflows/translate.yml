@@ -29,7 +29,7 @@ jobs:
       - name: Run translation
         run: |
           for file in content/posts/*.md; do
-            if [[ $file != *".fr.md" ]]; then
+            if [[ $file != *".md" ]]; then
               python translate_hf.py $file
             fi
           done

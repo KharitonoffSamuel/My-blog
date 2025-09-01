@@ -27,12 +27,21 @@ jobs:
       NODE_VERSION: 22.18.0
       TZ: Europe/Oslo
     steps:
-      - name: Checkout
+      - name: Checkout main
         uses: actions/checkout@v5
         with:
           submodules: recursive
           fetch-depth: 0
           ref: main
+
+      - name: Checkout dev
+        uses: actions/checkout@v5
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          ref: dev
+
+      - name: Change
         
       - name: Setup Go
         uses: actions/setup-go@v5

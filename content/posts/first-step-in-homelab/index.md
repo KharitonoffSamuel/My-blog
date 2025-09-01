@@ -19,7 +19,7 @@ cover:
 ## Create a Home Lab to Learn Kubernetes
 
 ### Why Learn Kubernetes?
-
+swit
 As a software engineer focused on low-level implementations, I realized I didn’t fully understand how modern cloud systems work, or how millions of users can access massive amounts of services without interruption. What fascinates me most is the elasticity of resource allocation.
 
 Think about Netflix: every evening, millions of people connect at the same time to watch their favorite series. This creates a huge traffic peak. Yet, everything runs smoothly without downtime.
