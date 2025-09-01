@@ -30,7 +30,8 @@ jobs:
         run: |
           for file in $(find content/posts -type f -name "*.md" ! -name "*.fr.md"); do
             echo "Translating $file"
-            python translate_hf.py "$file"
+            python3 translate_hf.py "$file"
+            echo "Translating Done"
            done
 
       - name: Commit translated files
