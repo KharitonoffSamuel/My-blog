@@ -5,9 +5,6 @@ import re
 
 translator = pipeline("translation", model="Helsinki-NLP/opus-mt-en-fr")
 
-file = sys.argv[1]
-print(f"[INFO] File input : {file}")
-
 def mask_markdown(text):
     masks = {}
     pattern = r'(\[.*?\]\(.*?\)|\!\[.*?\]\(.*?\)|`[^`]+`|^#+ )'
@@ -15,7 +12,6 @@ def mask_markdown(text):
         key = f"__MASK{len(masks)}__"
         masks[key] = match.group(0)
         return key
-    import re
     masked_text = re.sub(pattern, replacer, text, flags=re.MULTILINE)
     return masked_text, masks
 
@@ -25,11 +21,8 @@ def unmask_markdown(text, masks):
     return text
 
 def chunk_text(text, max_chunk_size=400):
-    # Découpe en morceaux par phrases ou paragraphes
-    import re
     sentences = re.split(r'(?<=[.!?]) +', text)
     chunks, current = [], ""
-
     for sentence in sentences:
         if len(current) + len(sentence) < max_chunk_size:
             current += sentence + " "
@@ -41,6 +34,7 @@ def chunk_text(text, max_chunk_size=400):
     return chunks
 
 def translate_file(file):
+    print(f"[INFO] File input : {file}")
     with open(file, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
@@ -95,3 +89,27 @@ def translate_file(file):
         f.write(final_content)
 
     print(f"[INFO] Translated file created: {output_file}")
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: python translate_hf.py <file_or_folder>")
+        sys.exit(1)
+
+    path = sys.argv[1]
+
+    if os.path.isfile(path):
+        if not path.endswith(".fr.md"):
+            translate_file(path)
+    elif os.path.isdir(path):
+        for root, _, files in os.walk(path):
+            for f in files:
+                if f.endswith(".md") and not f.endswith(".fr.md"):
+                    translate_file(os.path.join(root, f))
+    else:
+        print(f"[ERROR] Path not found: {path}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
