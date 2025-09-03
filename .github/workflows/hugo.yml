@@ -33,13 +33,6 @@ jobs:
           submodules: recursive
           fetch-depth: 0
           ref: main
-
-      - name: Checkout dev
-        uses: actions/checkout@v5
-        with:
-          submodules: recursive
-          fetch-depth: 0
-          ref: dev
         
       - name: Setup Go
         uses: actions/setup-go@v5
