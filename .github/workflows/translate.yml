@@ -44,22 +44,25 @@ jobs:
 
       - name: Run translation
         run: |
+          mkdir translations_tmp
           find content/posts -type f -name "*.md" ! -name "*.fr.md" -print0 | while IFS= read -r -d '' file; do
             echo "Translating $file"
             python3 translate_hf.py "$file"
             echo "Translating Done"
           done
+          # Déplacer toutes les traductions dans un dossier temporaire
+          find content/posts -type f -name "*.fr.md" -exec mv {} translations_tmp/ \;
 
-      - name: Commit translated files
+      - name: Commit translations to main
         run: |
           git fetch origin main
           git checkout main
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          cp -r content/posts ./content_tmp
-          git checkout dev -- content/posts hugo.toml
-          cp -r content_tmp/* content/posts/
-          rm -rf content_tmp
+
+          # Replacer les traductions dans content/posts
+          mv translations_tmp/* content/posts/
+
           git add content/posts
           git diff --cached --quiet || git commit -m "Auto-translate new posts (EN→FR)"
           git push origin main
