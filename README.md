@@ -25,3 +25,9 @@ If you want to test, or writ and see the result in live, you can use this comman
 hugo server -D
 ```
 The server is set at the port `1313`.
+
+## Dev
+
+[![Translate Posts](https://github.com/KharitonoffSamuel/My-blog/actions/workflows/translate.yml/badge.svg?branch=main)](https://github.com/KharitonoffSamuel/My-blog/actions/workflows/translate.yml)
+
+[![.github/workflows/hugo.yml](https://github.com/KharitonoffSamuel/My-blog/actions/workflows/hugo.yml/badge.svg?branch=main)](https://github.com/KharitonoffSamuel/My-blog/actions/workflows/hugo.yml)

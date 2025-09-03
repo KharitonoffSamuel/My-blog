@@ -65,4 +65,4 @@ jobs:
 
           git add content/posts
           git diff --cached --quiet || git commit -m "Auto-translate new posts (EN→FR)"
-          git push origin main
+          git push -f origin main
