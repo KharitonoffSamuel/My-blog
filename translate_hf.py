@@ -83,7 +83,8 @@ def translate_file(file):
     final_content = unmask_markdown(translated_masked, masks)
 
     # Sauvegarde
-    output_file = file.replace(".md", ".fr.md")
+    base, ext = os.path.splitext(file)
+    output_file = f"{base}.fr{ext}"
     with open(output_file, "w", encoding="utf-8") as f:
         f.writelines(new_front_matter)
         f.write(final_content)
