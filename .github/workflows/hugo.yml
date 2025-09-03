@@ -2,6 +2,8 @@ name: "Build and deploy"
 
 on:
   push:
+    branches:
+      - dev
 
 permissions:
   contents: write
@@ -68,18 +70,11 @@ jobs:
             python3 translate_hf.py "$file"
             echo "Translating Done"
           done
-          # Déplacer toutes les traductions dans un dossier temporaire
-          find content/posts -type f -name "*.fr.md" -exec mv {} translations_tmp/ \;
 
       - name: Commit translations to main
         run: |
-          git fetch origin main
-          git checkout main
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-
-          # Replacer les traductions dans content/posts
-          mv translations_tmp/* content/posts/
 
           git add content/posts
           git diff --cached --quiet || git commit -m "Auto-translate new posts (EN→FR)"
