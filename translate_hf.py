@@ -57,7 +57,7 @@ def translate_file(file):
         else:
             content_lines.append(line)
 
-    # Traduire seulement le titre
+    # Traduire seulement le title du front matter
     new_front_matter = []
     title_pattern = re.compile(r"^title:\s*['\"]?(.*?)['\"]?$")
     for line in front_matter:
@@ -69,25 +69,31 @@ def translate_file(file):
         else:
             new_front_matter.append(line)
 
-    # Traduire le contenu par morceaux
-    content_text = "".join(content_lines)
-    masked, masks = mask_markdown(content_text)
-    chunks = chunk_text(masked, max_chunk_size=400)
-
-    translated_parts = []
-    for c in chunks:
-        translated = translator(c, max_length=400)[0]["translation_text"]
-        translated_parts.append(translated)
-
-    translated_masked = " ".join(translated_parts)
-    final_content = unmask_markdown(translated_masked, masks)
+    # Traduction par blocs Markdown
+    final_content_lines = []
+    block_lines = []
+    for line in content_lines + ["\n"]:  # ajouter une ligne vide pour forcer la traduction du dernier bloc
+        if line.strip().startswith("#"):
+            # Si un bloc précédent existe, le traduire avant
+            if block_lines:
+                block_text = "".join(block_lines)
+                translated_block = translator(block_text, max_length=400)[0]["translation_text"]
+                final_content_lines.append(translated_block + "\n")
+                block_lines = []
+            # Traduire le titre uniquement
+            title_text = line.lstrip("#").strip()
+            translated_title = translator(title_text, max_length=100)[0]["translation_text"]
+            hashes = line[:len(line) - len(line.lstrip("#"))]  # conserver le nombre de #
+            final_content_lines.append(f"{hashes} {translated_title}\n\n")
+        else:
+            block_lines.append(line)
 
     # Sauvegarde
     base, ext = os.path.splitext(file)
     output_file = f"{base}.fr{ext}"
     with open(output_file, "w", encoding="utf-8") as f:
         f.writelines(new_front_matter)
-        f.write(final_content)
+        f.writelines(final_content_lines)
 
     print(f"[INFO] Translated file created: {output_file}")
 
