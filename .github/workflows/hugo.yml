@@ -40,8 +40,6 @@ jobs:
           submodules: recursive
           fetch-depth: 0
           ref: dev
-
-      - name: Change
         
       - name: Setup Go
         uses: actions/setup-go@v5

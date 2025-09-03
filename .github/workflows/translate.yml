@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
-          ref: main
+          ref: dev
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -52,13 +52,14 @@ jobs:
 
       - name: Commit translated files
         run: |
+          git fetch origin main
+          git checkout main
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          files=$(find content/posts -type f -name "*.fr.md")
-          if [ -n "$files" ]; then
-            echo "$files" | xargs git add
-            git diff --cached --quiet || git commit -m "Auto-translate new posts (EN→FR)"
-            git push
-          else
-            echo "No translated files to commit"
-          fi
+          cp -r content/posts ./content_tmp
+          git checkout dev -- content/posts hugo.toml
+          cp -r content_tmp/* content/posts/
+          rm -rf content_tmp
+          git add content/posts
+          git diff --cached --quiet || git commit -m "Auto-translate new posts (EN→FR)"
+          git push origin main
