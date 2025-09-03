@@ -80,6 +80,7 @@ jobs:
       HUGO_VERSION: 0.149.0
       NODE_VERSION: 22.18.0
       TZ: Europe/Paris
+    needs: translate
     steps:
       - name: Checkout main
         uses: actions/checkout@v5
