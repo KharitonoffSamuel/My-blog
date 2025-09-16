@@ -6,6 +6,7 @@ topics: ["Homelab"]
 tags: ["talos.linux", "K8S", "K9S", "K3S", "talosctl", "proxmox", "hardware", "homelab", "network"]
 projects: ["HomeLab gitDevSecOps"]
 categories: ["IT", "Homelab"]
+weight: 0 # Lower number = toper in the list
 cover:
   image: "cover.svg"
   alt: "First Step in Homelab"
