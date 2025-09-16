@@ -1,5 +1,5 @@
 ---
-title: 'Architecture Learning Project'
+title: 'Homelab architecture Learning Project'
 date: 2025-09-15T22:50:16+02:00
 draft: false
 topics: ["Homelab"]

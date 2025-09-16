@@ -1,5 +1,5 @@
 ---
-title: 'Projet d'apprentissage en architecture'
+title: "Projet d'apprentissage homelab : l'architecture"
 date: 2025-09-15T22:50:16+02:00
 draft: false
 topics: ["Homelab"]
@@ -8,7 +8,7 @@ projects: ["HomeLab gitDevSecOps"]
 categories: ["IT", "Homelab"]
 cover:
   image: "cover.svg"
-  alt: 'Architecture Learning Project'
+  alt: "Architecture Learning Project"
   caption: ""
   relative: true  
   hidden: true            # si true → pas de cover sur la page du post
